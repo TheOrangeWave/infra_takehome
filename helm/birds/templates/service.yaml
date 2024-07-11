@@ -8,8 +8,9 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
       protocol: TCP
       name: http
   selector:
-    {{- include "birds.selectorLabels" . | nindent 4 }}
+     app.kubernetes.io/name: birds
+  # type: NodePort

@@ -22,7 +22,7 @@ def get_bird(state: str):
 
 
 def get_weather(state: str):
-    r = requests.get(f'https://api.weather.gov/alerts/active?area={{abbreviation}}')
+    r = requests.get(f'https://api.weather.gov/alerts/active?area={state}')
     return r.json()
 
 
@@ -40,6 +40,6 @@ def bird(state):
     print(bird)
     weather = get_weather(state)
     print(weather)
-    out = str([bird, weather])
+    out = json.dumps([bird, json.dumps(weather)])
     return out, 200, {'Content-Type': 'application/json'}
 
